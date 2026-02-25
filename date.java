@@ -21,7 +21,7 @@ public class date {
     }
 
     public int nbJoursEcoules() {
-        int nbr_jour[] = {31,bissex()?28:29,31,30,31,30,31,31,30,31,30,31};
+        int nbr_jour[] = {31, bissex() ? 29 : 28, 31,30,31,30,31,31,30,31,30,31};
         int nbr = 0;
         for (int i = 0; i < mois-1; i++) {
             nbr += nbr_jour[i];
@@ -39,6 +39,16 @@ public class date {
     }
 
     public long nbJoursEntre(date d1, date d2){
-        return d2.nbJoursEcoules() - d1.nbJoursRestants();
+
+        if (d1.an == d2.an) {
+            return d2.nbJoursEcoules() - d1.nbJoursEcoules();
+        }
+
+        long jours = d1.nbJoursRestants() + d2.nbJoursEcoules();
+        for (int y = d1.an + 1; y < d2.an; y++) {
+            jours += bissex(y) ? 366 : 365;
+        }
+
+        return jours;
     }
 }
