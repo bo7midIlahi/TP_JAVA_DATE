@@ -13,7 +13,7 @@ public class date {
     }
 
     public String toString() {
-        return jour + "/" + mois + "/" + an;
+        return jour + "-" + mois + "-" + an;
     }
 
     public boolean bissex(){
